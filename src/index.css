@@ -62,4 +62,23 @@
     padding: 20px;
     margin: 0 auto;
   }
+
+  .loader {
+    pointer-events: none;
+    width: 100%;
+    max-width: 1.7em;
+    height: 1.7em;
+    border: 0.4em solid transparent;
+    border-color: #eee;
+    border-top-color: #424242;
+    border-radius: 50%;
+    animation: loadingspin 1s linear infinite;
+  }
+
+  @keyframes loadingspin {
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+
 }
