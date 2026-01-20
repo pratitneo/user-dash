@@ -12,3 +12,14 @@ export interface SideLinkType {
     url?: string
     icon?: IconType
 }
+export interface TopUserProps {
+    name?: string
+    netWorth?: string
+    place?: string
+}
+export interface UserCardProps {
+    rank?: number
+    name?: string
+    networth?: string
+    place?: string
+}
