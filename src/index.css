@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Base Layer ---- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-gray-300;
+  }
+
+  a {
+    @apply text-green-600 transition-colors;
+  }
+}
+
+/* ---- Components Layer ---- */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-blue-700;
+  }
+
+  .card {
+    @apply bg-white shadow-md rounded-2xl p-6 border border-gray-100;
+  }
+}
+
+/* ---- Utilities Layer ---- */
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE & Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
