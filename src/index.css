@@ -55,4 +55,11 @@
     scrollbar-width: none;
     /* Firefox */
   }
+
+  .container {
+    width: 100%;
+    max-width: 1206px;
+    padding: 20px;
+    margin: 0 auto;
+  }
 }

@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bgPrime: '#FAFAFA',
+        borderPrime: '#E0E0E0',
+        colorPrime: '#424242',
+      },
+      fontFamily: {
+        sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
+      }
+    },
   },
   plugins: [],
 };
