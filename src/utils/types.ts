@@ -3,6 +3,9 @@ import type { IconType } from "react-icons"
 export interface SearchProps {
     placeholder?: string
     inputName?: string
+    getActionFn?: (InputEvent: React.ChangeEvent<HTMLInputElement>) => void
+    inputValue?: string
+    getClearSearch?: () => void
 }
 export interface HeaderProps {
     appName?: string
@@ -170,4 +173,11 @@ export interface NewCustomerModalProps {
 }
 export interface SectionHeadProps {
     head?: string
+}
+export interface SearchContextProps {
+    filteredUsers?: UserRowProps[]
+    updateFilteredUsers?: (data: UserRowProps[]) => void
+    searchValue?: string
+    updateSearchValue?: (value: string) => void
+    clearSearchValue: () => void
 }
