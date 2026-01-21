@@ -1,6 +1,6 @@
 import { sideLinks } from '../utils/sideLinks'
 import type { SideLinkType } from '../utils/types'
-import Loader from './Loader'
+// import Loader from './Loader'
 
 const Sidebar = () => {
     return (
@@ -15,7 +15,7 @@ const Sidebar = () => {
                     </div>
                 )
             })}
-            <Loader />
+            {/* <Loader /> */}
         </div>
     )
 }
