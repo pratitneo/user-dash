@@ -9,11 +9,8 @@ export const useRemHei = (ele: React.RefObject<HTMLElement> | null, pad: number 
 
         const calcHei = () => {
             const winHei = window.innerHeight
-            console.log(winHei, 'winHei')
             const eleTop = ele?.current?.getBoundingClientRect()?.top
-            console.log(eleTop, 'eleTop')
             const remHei = winHei - eleTop - pad
-            console.log(remHei, 'remHei')
             setHeight(remHei)
         }
         calcHei()

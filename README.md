@@ -9,9 +9,8 @@ Steps to run project:
 
 Libraries used:
 1. React Icons
-2. React Query
-3. Axios
-4. React-Data-Table-Component
+2. Axios
+3. React-Data-Table-Component
 
 End Points used:
 1. Dummy JSON (users data)
