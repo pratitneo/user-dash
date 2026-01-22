@@ -165,6 +165,8 @@ export interface NewUserModalContextProps {
 }
 export interface NewCustomerModalProps {
     heading?: string
+    onSubmit?: (data: NewUserDataType) => void;
+
 }
 export interface SectionHeadProps {
     head?: string

@@ -16,4 +16,20 @@ export const topUsers: TopUserProps[] = [
         netWorth: '13,00,00,000',
         place: 'down'
     },
+    {
+        name: 'test name 4 last name',
+        netWorth: '13,00,00,000',
+        place: 'down'
+    },
+    {
+        name: 'test name 5 last name',
+        netWorth: '13,00,00,000',
+        place: 'down'
+    },
+    {
+        name: 'test name 6 last name',
+        netWorth: '13,00,00,000',
+        place: 'down'
+    },
+
 ]
