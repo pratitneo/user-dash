@@ -58,12 +58,10 @@ export interface UserProps {
     crypto?: Crypto
     role?: string
 }
-
 export interface Hair {
     color?: string
     type?: string
 }
-
 export interface Address {
     address?: string
     city?: string
@@ -73,12 +71,10 @@ export interface Address {
     coordinates?: Coordinates
     country?: string
 }
-
 export interface Coordinates {
     lat?: number
     lng?: number
 }
-
 export interface Bank {
     cardExpire?: string
     cardNumber?: string
@@ -86,14 +82,12 @@ export interface Bank {
     currency?: string
     iban?: string
 }
-
 export interface Company {
     department?: string
     name?: string
     title?: string
     address?: Address2
 }
-
 export interface Address2 {
     address?: string
     city?: string
@@ -103,18 +97,15 @@ export interface Address2 {
     coordinates?: Coordinates2
     country?: string
 }
-
 export interface Coordinates2 {
     lat?: number
     lng?: number
 }
-
 export interface Crypto {
     coin?: string
     wallet?: string
     network?: string
 }
-
 export interface UserRowProps {
     rank: number
     fullName: string
@@ -146,6 +137,8 @@ export interface InputProps {
     inpType?: string
     inpName?: string
     inpId?: string
+    getValue?: string
+    getChangeFn?: (inpEvent: React.ChangeEvent<HTMLInputElement>) => void
 }
 export interface DropDownOptionType {
     name?: string
@@ -165,6 +158,8 @@ export interface DropdownContextProps {
 }
 
 export interface NewUserModalContextProps {
+    newUserData?: NewUserDataType
+    updateNewUserData?: (key: string, value: string) => void
     modalVisible?: boolean
     updateModalVisible?: (value: boolean) => void
 }
@@ -180,4 +175,10 @@ export interface SearchContextProps {
     searchValue?: string
     updateSearchValue?: (value: string) => void
     clearSearchValue: () => void
+}
+export interface NewUserDataType {
+    rank?: string
+    fullName?: string
+    email?: string
+    role?: string
 }
