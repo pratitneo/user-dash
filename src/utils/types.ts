@@ -137,6 +137,7 @@ export interface InputProps {
     inpType?: string
     inpName?: string
     inpId?: string
+    inpPlaceholder?: string
     getValue?: string
     getChangeFn?: (inpEvent: React.ChangeEvent<HTMLInputElement>) => void
 }

@@ -45,7 +45,7 @@
   }
 
   .inputLabel {
-    @apply capitalize text-sm font-semibold text-colorPrime;
+    @apply capitalize text-sm font-semibold text-colorPrime mb-2;
   }
 }
 

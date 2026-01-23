@@ -7,6 +7,7 @@ const Dropdown = ({ options }: DropDownProps) => {
     const { dropdownValue, updateDropdownValue, optionsVisible, updateOptionsVisible } = useDropdown()
     const { updateNewUserData } = useNewUserModal()
 
+
     const handleOptions = () => {
         updateOptionsVisible?.(!optionsVisible)
     }
@@ -19,7 +20,7 @@ const Dropdown = ({ options }: DropDownProps) => {
 
     return (
         <div>
-            <p className="inputLabel">select your role</p>
+            {/* <p className="inputLabel">select your role</p> */}
             <div className={`border border-colorPrime rounded-lg px-3 py-2 relative`}>
                 {/* selected value */}
                 <div className="flex justify-between items-center" onClick={handleOptions}>
