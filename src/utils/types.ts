@@ -159,9 +159,10 @@ export interface DropdownContextProps {
 
 export interface NewUserModalContextProps {
     newUserData?: NewUserDataType
-    updateNewUserData?: (key: string, value: string) => void
+    updateNewUserData?: (key?: string, value?: string) => void
     modalVisible?: boolean
     updateModalVisible?: (value: boolean) => void
+    clearNewUserData?: () => void
 }
 export interface NewCustomerModalProps {
     heading?: string
@@ -172,6 +173,8 @@ export interface SectionHeadProps {
     head?: string
 }
 export interface SearchContextProps {
+    allUsers?: UserRowProps[]
+    updateAllUsers?: (data: UserRowProps[]) => void
     filteredUsers?: UserRowProps[]
     updateFilteredUsers?: (data: UserRowProps[]) => void
     searchValue?: string
@@ -183,4 +186,15 @@ export interface NewUserDataType {
     fullName?: string
     email?: string
     role?: string
+}
+export interface TableContextProps {
+    getLoading?: boolean
+    postLoading?: boolean
+    updateGetLoading?: (value: boolean) => void
+    updatePostLoading?: (value: boolean) => void
+}
+export interface LinkProps {
+    Icon?: IconType
+    linkName?: string
+    sizeValue?: number
 }
