@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react"
 
-export const useRemHei = (ele: React.RefObject<HTMLElement> | null, pad: number = 0) => {
+export const useRemHei = (ele: React.RefObject<HTMLElement | null>, pad: number = 0) => {
     const [height, setHeight] = useState(0)
 
     useEffect(() => {
@@ -9,7 +8,7 @@ export const useRemHei = (ele: React.RefObject<HTMLElement> | null, pad: number 
 
         const calcHei = () => {
             const winHei = window.innerHeight
-            const eleTop = ele?.current?.getBoundingClientRect()?.top
+            const eleTop = ele?.current?.getBoundingClientRect()?.top ?? 0;
             const remHei = winHei - eleTop - pad
             setHeight(remHei)
         }
