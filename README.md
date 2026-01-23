@@ -11,6 +11,8 @@ Libraries used:
 1. React Icons
 2. Axios
 3. React-Data-Table-Component
+4. React Responsive
+5. React Redux
 
 End Points used:
-1. Dummy JSON (users data)
+1. Dummy JSON (get, post requests)

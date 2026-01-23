@@ -1,10 +1,5 @@
 
 export const customStyles = {
-    table: {
-        style: {
-            // borderRadius: "8px",
-        },
-    },
     headRow: {
         style: {
             backgroundColor: "#424242",

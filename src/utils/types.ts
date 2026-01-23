@@ -179,7 +179,6 @@ export interface SearchContextProps {
     updateFilteredUsers?: (data: UserRowProps[]) => void
     searchValue?: string
     updateSearchValue?: (value: string) => void
-    clearSearchValue: () => void
 }
 export interface NewUserDataType {
     rank?: string
@@ -197,4 +196,8 @@ export interface LinkProps {
     Icon?: IconType
     linkName?: string
     sizeValue?: number
+}
+export interface UserState {
+    allUsers: UserRowProps[]
+    searchValue: string
 }
