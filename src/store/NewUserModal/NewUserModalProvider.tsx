@@ -16,7 +16,7 @@ export const NewUserModalProvider = ({ children }: ContextProps) => {
         }))
     }
     const clearNewUserData = () => {
-        setNewUserData({});
+        setNewUserData(initialFormState);
     };
     const updateModalVisible = (value: boolean) => setModalVisible(value)
 
