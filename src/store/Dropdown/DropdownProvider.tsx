@@ -4,7 +4,7 @@ import { DropdownContext } from './DropdownContext'
 
 export const DropdownProvider = ({ children }: ContextProps) => {
 
-    const [dropdownValue, setDropdownValue] = useState('roles')
+    const [dropdownValue, setDropdownValue] = useState('select your role')
     const [optionsVisible, setOptionsVisible] = useState(false)
 
     const updateOptionsVisible = (value: boolean) => {

@@ -20,3 +20,5 @@ export const roles = [
         value: 'web developer'
     },
 ]
+
+export const initialFormState = { rank: '', fullName: '', email: '', role: '' }

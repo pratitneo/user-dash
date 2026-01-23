@@ -138,6 +138,7 @@ export interface InputProps {
     inpName?: string
     inpId?: string
     inpPlaceholder?: string
+    inpErr?: string
     getValue?: string
     getChangeFn?: (inpEvent: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -157,8 +158,9 @@ export interface DropdownContextProps {
     dropdownValue?: string
     updateDropdownValue?: (value: string) => void
 }
-
 export interface NewUserModalContextProps {
+    newCustErrors?: NewUserDataType
+    setNewCustErrors?: any
     newUserData?: NewUserDataType
     updateNewUserData?: (key?: string, value?: string) => void
     modalVisible?: boolean
