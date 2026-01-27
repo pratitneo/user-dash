@@ -23,6 +23,7 @@ import Loader from "./components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, clearSearch, setAllUsers, setSearchValue } from "./store/useReducer";
 import { initialFormState } from "./utils/userRoles";
+import { sideLinks } from "./utils/sideLinks";
 
 const App = () => {
 
@@ -131,7 +132,7 @@ const App = () => {
       <div className="container flex flex-col gap-4">
         {/* HEADER & SEARCH */}
         <div className="flex flex-col w-full gap-3 lg:flex-row lg:gap-6">
-          <Header appName="cliently" />
+          <Header appName="cliently" links={sideLinks} />
           <Search placeholder="search user by name..." inputName="global-search" inputValue={searchValue} getActionFn={handleSearch} getClearSearch={() => dispatch({ type: clearSearch })} />
         </div>
         {/* SIDEBAR, CARDS & TABLE *************************************/}

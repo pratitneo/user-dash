@@ -9,6 +9,7 @@ export interface SearchProps {
 }
 export interface HeaderProps {
     appName?: string
+    links?: SideLinkType[]
 }
 export interface SideLinkType {
     name?: string
@@ -120,7 +121,6 @@ export interface ButtonProps {
     getActionFn?: () => void
 }
 
-
 export const buttonVariants = {
     primary: 'bg-colorPrime text-white',
     secondary: 'bg-gray-200 text-black',
@@ -205,4 +205,7 @@ export interface LinkProps {
 export interface UserState {
     allUsers: UserRowProps[]
     searchValue: string
+}
+export interface SidebarProps {
+    links?: SideLinkType[]
 }
