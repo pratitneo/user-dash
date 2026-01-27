@@ -65,7 +65,6 @@ const App = () => {
   // FETCH USERS FOR THE FIRST RENDER
   useEffect(() => {
     getUsers()
-
   }, [])
   // POST NEW USER
   const postUser = async (newUserData: NewUserDataType) => {
@@ -144,15 +143,7 @@ const App = () => {
             <div className="flex flex-col gap-4 xl:justify-between">
               <SectionHead head="top users" />
               <div className="flex gap-3 p-2 max-w-fit overflow-x-auto whitespace-nowrap">
-                {topUsers?.map((user, index) => (
-                  <UserCard
-                    key={user.name}
-                    name={user.name}
-                    networth={user.netWorth}
-                    place={user.place}
-                    rank={index + 1}
-                  />
-                ))}
+                {topUsers?.map((user, index) => <UserCard key={user.name} name={user.name} networth={user.netWorth} place={user.place} rank={index + 1} />)}
               </div>
             </div>
 
