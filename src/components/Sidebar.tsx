@@ -1,11 +1,10 @@
-import { sideLinks } from '../utils/sideLinks'
-import type { SideLinkType } from '../utils/types'
-// import Loader from './Loader'
+import { memo } from 'react'
+import type { SidebarProps, SideLinkType } from '../utils/types'
 
-const Sidebar = () => {
+const Sidebar = ({ links }: SidebarProps) => {
     return (
         <div className='hidden lg:flex lg:flex-col lg:gap-4 bg-white border border-borderPrime rounded-lg min-h-[calc(100vh-110px)] w-52 p-4'>
-            {sideLinks.map((link: SideLinkType) => {
+            {links?.map((link: SideLinkType) => {
                 const Icon = link.icon
 
                 return (
@@ -15,9 +14,8 @@ const Sidebar = () => {
                     </div>
                 )
             })}
-            {/* <Loader /> */}
         </div>
     )
 }
 
-export default Sidebar
+export default memo(Sidebar)
