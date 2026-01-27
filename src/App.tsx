@@ -137,7 +137,7 @@ const App = () => {
         </div>
         {/* SIDEBAR, CARDS & TABLE *************************************/}
         <div className="lg:flex gap-4">
-          <Sidebar />
+          <Sidebar links={sideLinks} />
           {/* CARDS & TABLE */}
           <div className="flex flex-col flex-1 gap-4 max-w-fit overflow-x-auto">
             {/* CARDS *************************************/}
