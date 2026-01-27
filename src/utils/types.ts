@@ -148,6 +148,8 @@ export interface DropDownOptionType {
 }
 export interface DropDownProps {
     options?: DropDownOptionType[]
+    label?: string
+    errorMsg?: string
 }
 export interface ContextProps {
     children: React.ReactNode

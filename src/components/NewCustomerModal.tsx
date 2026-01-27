@@ -33,7 +33,7 @@ const NewCustomerModal = ({ heading, onSubmit }: NewCustomerModalProps) => {
                 </div>
 
                 {/* Role */}
-                <Dropdown options={roles} />
+                <Dropdown options={roles} errorMsg={newCustErrors?.role} />
 
                 {/* BUTTONS */}
                 <div className="flex gap-3">
