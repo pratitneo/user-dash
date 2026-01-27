@@ -1,6 +1,6 @@
 import { HiOutlineMenuAlt4, HiOutlineUserCircle } from "react-icons/hi"
 import type { HeaderProps, SideLinkType } from "../utils/types"
-import { useState } from "react"
+import { memo, useState } from "react"
 import { useMediaQuery } from "react-responsive"
 import Link from "./Link"
 
@@ -26,4 +26,4 @@ const Header: React.FC<HeaderProps> = ({ appName, links }) => {
     )
 }
 
-export default Header
+export default memo(Header)

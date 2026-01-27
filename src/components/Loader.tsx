@@ -1,3 +1,4 @@
+import { memo } from "react"
 
 const Loader = () => {
     return (
@@ -5,4 +6,4 @@ const Loader = () => {
     )
 }
 
-export default Loader
+export default memo(Loader)

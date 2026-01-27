@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { buttonVariants, type ButtonProps } from '../utils/types'
 
 const Button = ({ trailingIcon, name, leadingIcon, variant = 'primary', getActionFn }: ButtonProps) => {
@@ -11,4 +12,4 @@ const Button = ({ trailingIcon, name, leadingIcon, variant = 'primary', getActio
     )
 }
 
-export default Button
+export default memo(Button)
