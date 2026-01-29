@@ -164,7 +164,7 @@ export interface NewUserModalContextProps {
     newCustErrors?: NewUserDataType
     setNewCustErrors?: any
     newUserData?: NewUserDataType
-    updateNewUserData?: (key?: string, value?: string) => void
+    updateNewUserData?: UpdateNewUserDataFn
     modalVisible?: boolean
     updateModalVisible?: (value: boolean) => void
     clearNewUserData?: () => void
@@ -209,3 +209,4 @@ export interface UserState {
 export interface SidebarProps {
     links?: SideLinkType[]
 }
+export type UpdateNewUserDataFn = <K extends keyof NewUserDataType>(key: K, value: NewUserDataType[K]) => void
