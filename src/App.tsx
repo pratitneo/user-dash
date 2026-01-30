@@ -1,12 +1,10 @@
-import axios from "axios";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Sidebar from "./components/Sidebar";
 import UserCard from "./components/UserCard";
-import { API_URLS } from "./config/api";
 import { customStyles } from "./utils/tableCustomStyles";
 import { topUsers } from "./utils/topUsers";
-import type { NewUserDataType, UserProps, UserRowProps, UserState } from "./utils/types";
+import type { NewUserDataType, UserRowProps, UserState } from "./utils/types";
 import DataTable from "react-data-table-component";
 import Button from "./components/Button";
 import { IoIosAdd } from "react-icons/io";
@@ -24,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, clearSearch, setAllUsers, setSearchValue } from "./store/useReducer";
 import { initialFormState } from "./utils/userRoles";
 import { sideLinks } from "./utils/sideLinks";
+import { validateNewUser } from "./utils/validate";
+import { createUser, fetchUsers } from "./services/users.service";
 
 const App = () => {
 
@@ -44,77 +44,54 @@ const App = () => {
   const getUsers = async () => {
     try {
       updateGetLoading?.(true)
-      const { data } = await axios.get(API_URLS?.users)
-      const mappedUsers = data?.users?.map((user: UserProps) => ({
-        rank: user?.id,
-        fullName: `${user?.firstName} ${user?.lastName}`,
-        email: user?.email,
-        role: user?.company?.title,
-      }))
-      dispatch({ type: setAllUsers, payload: mappedUsers })
-    }
-    catch (err) {
+      const users = await fetchUsers()
+      dispatch({ type: setAllUsers, payload: users })
+    } catch (err) {
+      console.error(err)
+    } finally {
       updateGetLoading?.(false)
-      console.log(err)
-    }
-    finally {
-      updateGetLoading?.(false)
-      console.log('fetching complete')
     }
   }
+
   // FETCH USERS FOR THE FIRST RENDER
   useEffect(() => {
     getUsers()
   }, [])
+
   // POST NEW USER
   const postUser = async (newUserData: NewUserDataType) => {
-    await axios.post(API_URLS?.postUser, newUserData)
-    const newCustRank = (allUsers?.length ?? 0) + 1
-    const newCust: UserRowProps = {
-      rank: newCustRank ?? 0,
-      fullName: newUserData?.fullName ?? '-',
-      email: newUserData?.email ?? '-',
-      role: newUserData?.role ?? '-',
-    }
+    const nextRank = (allUsers?.length ?? 0) + 1
+    const newUser = await createUser(newUserData, nextRank)
 
-    // updateFilteredUsers?.(updatedCustData)
-    dispatch({ type: addUser, payload: newCust })
+    dispatch({ type: addUser, payload: newUser })
   }
+
 
   // CHECK FORM DATA
   const formValidation = (formDetails: NewUserDataType) => {
 
-    const errors: NewUserDataType = {
-      fullName: formDetails.fullName ? '' : 'please check full name',
-      email: formDetails.email ? '' : 'please check email',
-      role: formDetails.role ? '' : 'please select a role',
-    }
+    const { errors, isValid } = validateNewUser(formDetails)
     setNewCustErrors(errors)
 
-    const isValid = Object.values(errors).every(err => !err)
-    console.log(isValid, 'isValid')
+    if (!isValid) return
 
-    if (isValid) {
-      postUser?.(formDetails)
-      updateModalVisible?.(false)
-      setNewCustErrors(initialFormState)
-      clearNewUserData?.()
-      updateDropdownValue?.('please select a role')
-
-    }
+    postUser?.(formDetails)
+    updateModalVisible?.(false)
+    setNewCustErrors(initialFormState)
+    clearNewUserData?.()
+    updateDropdownValue?.('please select a role')
   }
 
   // FILTER ON TABLE
-  const memoFilterUsers = useMemo(() => {
-    const query = searchValue?.toLowerCase()?.trim()
-    if (!query) return allUsers
+  const filteredUsers = useMemo(() => {
+    if (!searchValue) return allUsers
 
-    const getFilterUsers = allUsers?.filter((user: UserRowProps) => user?.fullName?.toLowerCase()?.trim()?.includes?.(query))
-    return getFilterUsers
+    const query = searchValue?.toLowerCase()?.trim()
+    return allUsers?.filter((user: UserRowProps) => user?.fullName?.toLowerCase()?.trim()?.includes?.(query))
 
   }, [searchValue, allUsers])
   // CLOSE MODAL OVERLAY
-  const handleOverclose = () => {
+  const handleOverlayClose = () => {
     updateModalVisible?.(false)
     updateDropdownValue?.('select a role')
     clearNewUserData?.()
@@ -152,14 +129,14 @@ const App = () => {
               <SectionHead head="all users" />
               <Button name="add new" variant="secondary" trailingIcon={<IoIosAdd size={22} />} getActionFn={() => updateModalVisible?.(true)} />
               <div ref={userTable} className={`rounded-lg border`}>
-                {getLoading ? <Loader /> : <DataTable columns={UserColumns} data={memoFilterUsers ?? []} keyField="rank" customStyles={customStyles} fixedHeader fixedHeaderScrollHeight={`${height}px`} />}
+                {getLoading ? <Loader /> : <DataTable columns={UserColumns} data={filteredUsers ?? []} keyField="rank" customStyles={customStyles} fixedHeader fixedHeaderScrollHeight={`${height}px`} />}
               </div>
             </div>
 
           </div>
         </div>
         {/* OVERLAY */}
-        {modalVisible && <Overlay getActionFn={handleOverclose}>
+        {modalVisible && <Overlay getActionFn={handleOverlayClose}>
           <NewCustomerModal heading={'fill details to show new customer'} onSubmit={formValidation} />
         </Overlay>}
       </div>

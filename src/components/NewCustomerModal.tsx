@@ -43,10 +43,7 @@ const NewCustomerModal = ({ heading, onSubmit }: NewCustomerModalProps) => {
                     <Button name="cancel" variant="secondary" getActionFn={handleCancel} />
 
                     {/* Submit */}
-                    <Button name="add record" getActionFn={() => {
-                        console.log("SUBMITTING USER →", newUserData)
-                        onSubmit?.(newUserData ?? initialFormState)
-                    }} />
+                    <Button name="add record" getActionFn={() => onSubmit?.(newUserData ?? initialFormState)} />
                 </div>
             </div>
         </div>
