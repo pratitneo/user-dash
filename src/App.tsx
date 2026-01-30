@@ -63,9 +63,9 @@ const App = () => {
     const nextRank = (allUsers?.length ?? 0) + 1
     updateAddUserLoader?.(true)
     try {
-      const newUser = await createUser(newUserData, nextRank)
-      if (newUser?.status === 201 || newUser?.status === 200) {
-        dispatch({ type: addUser, payload: newUser })
+      const { user, status } = await createUser(newUserData, nextRank)
+      if (status === 201 || status === 200) {
+        dispatch({ type: addUser, payload: user })
       }
     }
     catch (error) {
@@ -82,6 +82,7 @@ const App = () => {
 
     setTimeout(() => {
       updateSuccessMsg?.(false)
+      updateModalVisible?.(false)
       clearNewUserData?.()
       updateDropdownValue?.('please select a role')
     }, 3000);

@@ -13,13 +13,16 @@ export const fetchUsers = async (): Promise<UserRowProps[]> => {
     }))
 }
 
-export const createUser = async (newUserData: NewUserDataType, nextRank: number): Promise<UserRowProps> => {
-    await axios.post(API_URLS.postUser, newUserData)
+export const createUser = async (newUserData: NewUserDataType, nextRank: number): Promise<{ user: UserRowProps, status: number }> => {
+    const response = await axios.post(API_URLS.postUser, newUserData)
 
     return {
-        rank: nextRank,
-        fullName: newUserData.fullName ?? '-',
-        email: newUserData.email ?? '-',
-        role: newUserData.role ?? '-',
+        status: response?.status,
+        user: {
+            rank: nextRank,
+            fullName: newUserData.fullName ?? '-',
+            email: newUserData.email ?? '-',
+            role: newUserData.role ?? '-',
+        }
     }
 }
