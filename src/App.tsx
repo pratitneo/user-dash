@@ -28,7 +28,7 @@ import { createUser, fetchUsers } from "./services/users.service";
 const App = () => {
 
   // CONTEXT
-  const { modalVisible, updateModalVisible, clearNewUserData, setNewCustErrors } = useNewUserModal()
+  const { updateSuccessMsg, addUserLoader, updateAddUserLoader, modalVisible, updateModalVisible, clearNewUserData, setNewCustErrors } = useNewUserModal()
   const { updateDropdownValue } = useDropdown()
   const { getLoading, updateGetLoading } = useTable()
 
@@ -61,25 +61,45 @@ const App = () => {
   // POST NEW USER
   const postUser = async (newUserData: NewUserDataType) => {
     const nextRank = (allUsers?.length ?? 0) + 1
-    const newUser = await createUser(newUserData, nextRank)
+    updateAddUserLoader?.(true)
+    try {
+      const newUser = await createUser(newUserData, nextRank)
+      if (newUser?.status === 201 || newUser?.status === 200) {
+        dispatch({ type: addUser, payload: newUser })
+      }
+    }
+    catch (error) {
+      console.error(error)
+    }
+    finally {
+      resetNewUserModal()
+    }
+  }
 
-    dispatch({ type: addUser, payload: newUser })
+  const resetNewUserModal = () => {
+    updateAddUserLoader?.(false)
+    updateSuccessMsg?.(true)
+
+    setTimeout(() => {
+      updateSuccessMsg?.(false)
+      clearNewUserData?.()
+      updateDropdownValue?.('please select a role')
+    }, 3000);
   }
 
 
   // CHECK FORM DATA
   const formValidation = (formDetails: NewUserDataType) => {
-
     const { errors, isValid } = validateNewUser(formDetails)
     setNewCustErrors(errors)
 
     if (!isValid) return
+    else {
+      postUser?.(formDetails)
+      // updateModalVisible?.(false)
+      setNewCustErrors(initialFormState)
 
-    postUser?.(formDetails)
-    updateModalVisible?.(false)
-    setNewCustErrors(initialFormState)
-    clearNewUserData?.()
-    updateDropdownValue?.('please select a role')
+    }
   }
 
   // FILTER ON TABLE
@@ -137,7 +157,7 @@ const App = () => {
         </div>
         {/* OVERLAY */}
         {modalVisible && <Overlay getActionFn={handleOverlayClose}>
-          <NewCustomerModal heading={'fill details to show new customer'} onSubmit={formValidation} />
+          <NewCustomerModal heading={'fill details to show new customer'} onSubmit={formValidation} addingUser={addUserLoader} />
         </Overlay>}
       </div>
     </div>

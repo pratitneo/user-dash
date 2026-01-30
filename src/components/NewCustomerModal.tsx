@@ -6,9 +6,11 @@ import Input from "./Input"
 import { useNewUserModal } from "../store/NewUserModal/NewUserModalContext"
 import { useDropdown } from "../store/Dropdown/DropdownContext"
 import { memo } from "react"
+import Loader from "./Loader"
+import SuccessMsg from "./SuccessMsg"
 
-const NewCustomerModal = ({ heading, onSubmit }: NewCustomerModalProps) => {
-    const { newCustErrors, newUserData, updateNewUserData, clearNewUserData, updateModalVisible } = useNewUserModal()
+const NewCustomerModal = ({ heading, onSubmit, addingUser }: NewCustomerModalProps) => {
+    const { successMsg, newCustErrors, newUserData, updateNewUserData, clearNewUserData, updateModalVisible } = useNewUserModal()
     const { updateDropdownValue } = useDropdown()
 
     // FUNCTIONS
@@ -39,11 +41,14 @@ const NewCustomerModal = ({ heading, onSubmit }: NewCustomerModalProps) => {
                 <Dropdown options={roles} errorMsg={newCustErrors?.role} />
 
                 {/* BUTTONS */}
-                <div className="flex gap-3">
+                <div className="flex gap-3 items-center">
                     <Button name="cancel" variant="secondary" getActionFn={handleCancel} />
 
                     {/* Submit */}
                     <Button name="add record" getActionFn={() => onSubmit?.(newUserData ?? initialFormState)} />
+
+                    {addingUser && <Loader />}
+                    {successMsg ? <SuccessMsg /> : null}
                 </div>
             </div>
         </div>

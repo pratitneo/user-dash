@@ -3,19 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://pratitb.github.io/<projectName>",
+  "homepage": "https://pratitneo.github.io/user-dash",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run dev",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "@tanstack/react-query": "^5.90.19",
     "axios": "^1.13.2",
+    "gh-pages": "^6.3.0",
     "react": "^19.2.0",
     "react-data-table-component": "^7.7.0",
     "react-dom": "^19.2.0",

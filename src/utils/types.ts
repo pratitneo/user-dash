@@ -161,6 +161,8 @@ export interface DropdownContextProps {
     updateDropdownValue?: (value: string) => void
 }
 export interface NewUserModalContextProps {
+    addUserLoader?: boolean
+    updateAddUserLoader?: (value: boolean) => void
     newCustErrors?: NewUserDataType
     setNewCustErrors?: any
     newUserData?: NewUserDataType
@@ -168,11 +170,13 @@ export interface NewUserModalContextProps {
     modalVisible?: boolean
     updateModalVisible?: (value: boolean) => void
     clearNewUserData?: () => void
+    successMsg?: boolean
+    updateSuccessMsg?: (value: boolean) => void
 }
 export interface NewCustomerModalProps {
     heading?: string
     onSubmit?: (data: NewUserDataType) => void;
-
+    addingUser?: boolean
 }
 export interface SectionHeadProps {
     head?: string
